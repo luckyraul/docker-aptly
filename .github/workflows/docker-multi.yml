@@ -30,16 +30,5 @@ jobs:
         with:
           context: .
           platforms: linux/amd64,linux/arm64
-          push: false
-          tags: luckyraul/aptly:${{ matrix.version }} .
-
-      - name: Push image
-        run: |
-          export IMAGE_NAME=luckyraul/aptly:${{ matrix.version }}
-          export IMAGE_ID=ghcr.io/luckyraul/aptly:${{ matrix.version }}
-
-          # Change all uppercase to lowercase
-          export IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
-
-          docker tag $IMAGE_NAME $IMAGE_ID
-          docker push $IMAGE_ID
+          push: true
+          tags: ghcr.io/luckyraul/aptly:${{ matrix.version }}
