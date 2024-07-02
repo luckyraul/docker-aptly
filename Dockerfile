@@ -1,14 +1,12 @@
-FROM debian:buster-slim
+FROM debian:bookworm-slim
 
-MAINTAINER Nikita Tarasov <nikita@mygento.ru>
+MAINTAINER Nikita Tarasov <nikita@mygento.com>
 
 ENV GIN_MODE=release
 
-RUN apt-get -qq update && apt-get -qqy upgrade && \
-    apt-get -qqy install wget gpgv1 gnupg1 sudo gosu && \
-    wget -qO - https://www.aptly.info/pubkey.txt | sudo apt-key add - && \
-    sh -c 'echo "deb http://repo.aptly.info/ squeeze main" >> /etc/apt/sources.list.d/aptly.list' && \
-    apt-get -qq update && apt-get -qqy install aptly
+RUN apt-get -qq update && \
+    apt-get -qqy upgrade && \
+    apt-get -qqy install aptly
 
 EXPOSE 8080
 
